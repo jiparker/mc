@@ -1,0 +1,34 @@
+
+
+
+
+function getInventory(type)
+ 	_rock = turtle.getItemCount(16)
+	_dirt = turtle.getItemCount(13)
+	_torch = turtle.getItemCount(14)
+	_glass = turtle.getItemCount(15)
+	
+	if type == nil then
+		print("rock: " .. _rock)
+		print("glass: " .. _glass)
+		print("torch: " .. _torch)
+		print("dirt: " .. _dirt)
+	end
+
+	if type == "dirt" then return _dirt end
+	if type == "glass" then return _glass end
+	if type == "rock" then return _rock end
+	if type == "torch" then return _torch end
+
+end
+
+getInventory()
+print("if inventory is ready to go press enter")
+read()
+
+
+
+print("Running NOW")
+
+--turtle.select(1)
+--turtle.place()

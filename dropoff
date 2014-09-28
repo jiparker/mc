@@ -1,0 +1,14 @@
+turtle.turnLeft()
+
+turtle.select(5)
+turtle.drop()
+turtle.select(6)
+turtle.drop()
+turtle.select(7)
+turtle.drop()
+turtle.select(8)
+turtle.drop()
+
+
+
+turtle.turnRight()

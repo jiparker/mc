@@ -1,0 +1,103 @@
+local args = { ... }
+local type = ""
+local selectedSlot = nil
+
+function getInventory(type)
+ 	_rock = turtle.getItemCount(16)
+	_dirt = turtle.getItemCount(13)
+		+ turtle.getItemCount(12)
+		+ turtle.getItemCount(11)
+		+ turtle.getItemCount(10)
+	_torch = turtle.getItemCount(14)
+	_glass = turtle.getItemCount(15)
+	
+	if type == nil then
+		print("rock: " .. _rock)
+		print("glass: " .. _glass)
+		print("torch: " .. _torch)
+		print("dirt: " .. _dirt)
+	end
+
+	if type == "dirt" then return _dirt end
+	if type == "glass" then return _glass end
+	if type == "rock" then return _rock end
+	if type == "torch" then return _torch end
+
+end
+
+function placeSmartly()
+	if type == "dirt" then
+		if turtle.getItemCount(selectedSlot) > 0 then 
+			turtle.place()
+		elseif selectedSlot > 10 then
+			selectedSlot = selectedSlot - 1
+			if turtle.getItemCount(selectedSlot) > 0 then 
+				turtle.select(selectedSlot)	
+				turtle.place()
+			else
+				print("out of dirt")
+			end
+		else
+			print("out of dirt2")
+		end
+	else
+		turtle.place()
+	end
+end
+
+
+type = args[1]
+print("Running NOW")
+
+counter = 0
+
+while not turtle.detect() do
+	turtle.forward()
+	counter=counter + 1
+end
+
+if type == "rock" then
+  selectedSlot = 16
+elseif type == "dirt" then
+  selectedSlot = 13
+elseif type == "torch" then
+  selectedSlot = 14
+elseif type == "glass" then
+  selectedSlot = 15
+elseif type == "water" then
+	selectedSlot = 1
+else
+	print("no clue what you want")
+	return
+end
+	turtle.select(selectedSlot)	
+
+if type == "torch" then
+	print("torching")
+	for i=1, counter, 2 do
+  	for j=1,2,1 do turtle.back()	end
+		turtle.place()
+	end
+elseif type == "water" then
+	-- assume 9 water
+	bucketNum = 1
+	print("laying water.......")
+	for i=1, counter, 2 do
+  		for j=1,2,1 do turtle.back()	end
+			turtle.select(bucketNum)	
+			if bucketNum < 11 then
+				turtle.place()
+				bucketNum = bucketNum + 1
+			else
+				print("out of water")
+			end
+	end
+else
+	for i=1, counter, 1 do
+  	turtle.back(1)	
+		placeSmartly()	
+	end
+end
+
+--turtle.select(1)
+--turtle.place()

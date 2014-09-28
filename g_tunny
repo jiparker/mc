@@ -1,0 +1,3 @@
+shell.run("rm tunny")
+shell.run("github jiparker mc . /tunny")
+shell.run("mv ../downloads/mc/tunny .")
