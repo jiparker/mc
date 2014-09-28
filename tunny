@@ -111,7 +111,7 @@ for i=1, glength, 1 do
 end
 
 --go back
-for i=1,glength*2,1
+for i=1,glength*2,1 do
 	turtle.back()
 end
 
