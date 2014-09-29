@@ -1,0 +1,94 @@
+
+stoneSlot = 1
+maxStoneSlot = 16
+headingOut = true
+done = false
+
+-- where mode is r2l or l2r right-to-left or left-to-right
+function makeNextMove(mode)
+	if mode == "l2r" then
+		if not turtle.detect() then
+			turtle.forward()
+		else
+			if headingOut then
+			  turtle.turnRight()
+				if not turtle.detect() then
+					turtle.forward()
+					turtle.turnRight()
+					headingOut = false
+				else
+					done = true
+				end
+			else
+				-- not heading out
+				turtle.turnLeft()
+				if not turtle.detect() then
+					turtle.forward()
+					turtle.turnLeft()
+					headingOut = true
+				else
+					done = true
+				end
+			end
+	  end	
+		--TODO:  check fuel, refuel if needed
+		--if no more fuel - notify
+	end
+end
+
+function movel2r()
+	makeNextMove("l2r")
+end
+
+function placeIt()
+	itemCount = turtle.getItemCount(stoneSlot)
+	print("slot: " .. stoneSlot .. " has " .. itemCount .. " item(s)")
+		
+	if turtle.getItemCount(stoneSlot) < 1 then
+		stoneSlot = stoneSlot + 1
+		if stoneSlot > maxStoneSlot then
+			--notify out of materials
+			do return false end
+		end
+	end
+	turtle.select(stoneSlot)
+	turtle.placeDown()
+	return true
+end
+
+function placeIfNeeded()
+	if not turtle.detectDown() then
+		if not placeIt() then
+			do return false end
+		end
+ 	end
+	return true
+end
+
+function headBack()
+	if headingOut then
+		turtle.turnRight()
+		turtle.turnRight()
+	end
+	while not turtle.detect() do 
+		turtle.forward()
+	end
+	turtle.turnRight()
+	turtle.turnRight()
+end
+
+
+function main()
+	x = 0
+	
+	while not done do
+	  movel2r()
+		if not placeIfNeeded() then
+			headBack()
+			break
+		end
+		x = x + 1
+	end
+end
+
+main()
