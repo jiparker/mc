@@ -7,9 +7,11 @@ local tArgs, gheight, gwidth, glength = {...}, nil, nil, nil, nil
 
 --for each spot, dig 3 vertically
 function clear_vertical(height)
-	turtle.dig();
-	turtle.forward();
-	turtle.digDown();
+	turtle.dig()
+	while not turtle.forward() do
+		turtle.dig()
+	end
+	turtle.digDown()
 
 	x = height - 2
 	for i=1, x, 1 do
