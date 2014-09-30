@@ -44,7 +44,7 @@ end
 function goAllTheWayHome()
 turtle.down()
 turtle.turnLeft()
-	for i=1,19,1 do
+	for i=1,17,1 do
 		turtle.forward()
 	end
 	turtle.turnRight()
