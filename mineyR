@@ -1,0 +1,32 @@
+local tArgs, gheight, gwidth, glength = {...}, nil, nil, nil, nil
+--hi - this is to dig 3x5 space for farm design
+--        S
+--        G
+--D D D D W
+
+
+function clear(x)
+	for i=1, x, 1 do
+		turtle.dig();
+		turtle.forward();
+		turtle.digDown();
+	end
+end 
+
+	gIterations = tArgs[1]
+	gLength = 30
+
+for i=1, gIterations, 1 do
+		clear(gLength)
+		turtle.turnRight()
+		clear(3)
+		turtle.turnRight()
+		clear(gLength)
+		turtle.turnLeft()
+		clear(3)
+		turtle.turnLeft()
+end
+
+
+
+

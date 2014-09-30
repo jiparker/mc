@@ -14,16 +14,17 @@ function clear(x)
 end 
 
 	gIterations = tArgs[1]
+	gLength = 30
 
 for i=1, gIterations, 1 do
-		clear(30)
-		turtle.turnRight()
-		clear(3)
-		turtle.turnRight()
-		clear(30)
+		clear(gLength)
 		turtle.turnLeft()
 		clear(3)
 		turtle.turnLeft()
+		clear(gLength)
+		turtle.turnRight()
+		clear(3)
+		turtle.turnRight()
 end
 
 
