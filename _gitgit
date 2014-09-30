@@ -1,1 +1,2 @@
-shell.run("../github /tur")
+--from same dir as github, a dir of mc will be added with all github files
+shell.run("github jiparker mc /")
