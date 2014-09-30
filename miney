@@ -13,8 +13,7 @@ function clear(x)
 	end
 end 
 
-	gIterations = 1
-	--gIterations = tArgs[1]
+	gIterations = tArgs[1]
 
 for i=1, gIterations, 1 do
 		clear(30)
