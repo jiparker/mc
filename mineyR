@@ -16,7 +16,7 @@ function clear(x)
 end 
 
 	gIterations = tArgs[1]
-	gLength = 30
+	gLength = 60
 
 for i=1, gIterations, 1 do
 		clear(gLength)
