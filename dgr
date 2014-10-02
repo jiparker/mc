@@ -1,0 +1,6 @@
+
+
+while not turtle.detectDown() do
+
+	turtle.placeDown()
+end
