@@ -1,0 +1,12 @@
+local tArgs, gIterations = {...}, nil
+	
+	gIterations = tArgs[1]
+
+for i=1, gIterations, 1 do
+		turtle.forward()
+		turtle.down()
+end
+
+
+
+

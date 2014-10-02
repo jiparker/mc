@@ -1,0 +1,148 @@
+-- hi Ethan!  start at far left even same level as crop is growing
+
+local selectedSlot = 1
+
+local counter = 0
+
+function dropOff()
+  turtle.select(5)
+  turtle.dropDown()
+  turtle.select(6)
+  turtle.dropDown()
+  turtle.select(7)
+  turtle.dropDown()
+  turtle.select(8)
+  turtle.dropDown()
+  turtle.select(9)
+  turtle.dropDown()
+  turtle.select(10)
+  turtle.dropDown()
+  turtle.select(11)
+  turtle.dropDown()
+  turtle.select(12)
+  turtle.dropDown()
+  turtle.select(13)
+  turtle.dropDown()
+  turtle.select(14)
+  turtle.dropDown()
+  turtle.select(15)
+  turtle.dropDown()
+  turtle.select(16)
+  turtle.dropDown()
+end
+
+
+function getIntoPosition()
+	turtle.turnRight()
+	turtle.forward()
+	turtle.forward()
+	turtle.turnLeft()
+	turtle.up()
+end
+
+function goDropOff()
+	turtle.down()
+	turtle.turnRight()
+	turtle.forward()
+	turtle.forward()
+	turtle.forward()
+	turtle.turnLeft()
+end
+
+function goDropOffCorner()
+	turtle.down()
+	turtle.turnRight()
+	turtle.forward()
+	turtle.forward()
+end
+
+
+function goAllTheWayHome()
+turtle.down()
+turtle.turnLeft()
+	for i=1,17,1 do
+		turtle.forward()
+	end
+	turtle.turnRight()
+end
+
+
+function getHome()
+	turtle.down()
+	turtle.turnLeft()
+	turtle.forward()
+	turtle.forward()
+	turtle.turnRight()
+end
+
+
+function farmPlot()
+counter = 0
+
+while not turtle.detect() do
+	turtle.forward()
+	counter=counter + 1
+end
+
+print("counter is " .. counter .. "  -- starting plot")
+for i=1, counter, 1 do
+	if turtle.getItemCount(selectedSlot) < 5 then
+		selectedSlot = selectedSlot +1
+	end
+	turtle.select(selectedSlot)
+	
+	turtle.digDown()
+	turtle.suck()
+	turtle.down()
+	
+	--print("doing right side")
+	turtle.turnRight()
+	turtle.dig()
+	turtle.suck()
+	turtle.place()
+	turtle.turnRight()
+	turtle.turnRight()
+	--print("doing first left side")
+	turtle.dig() --harvest
+	turtle.suck()
+	turtle.forward()
+	--print("doing second left side")
+	turtle.dig()
+	turtle.suck()
+	turtle.place()
+	turtle.back()
+	turtle.dig()
+	turtle.place()
+	turtle.turnRight()
+	turtle.up()
+	turtle.digDown()
+	turtle.placeDown()
+	turtle.back()
+
+end
+end
+
+-- ***********************************
+-- start 1
+getIntoPosition()
+farmPlot()
+goDropOff()
+dropOff()
+
+-- start 2
+getIntoPosition()
+farmPlot()
+goDropOff()
+dropOff()
+
+-- start 3
+getIntoPosition()
+farmPlot()
+goDropOff()
+dropOff()
+
+-- start 4
+getIntoPosition()
+farmPlot()
+goAllTheWayHome()
+dropOff()
