@@ -5,8 +5,8 @@ local tArgs, gIterations = {...}, nil
 for i=1, gIterations, 1 do
 	while not turtle.detectDown() do
   	turtle.placeDown()
-		turtle.forward()
 	end
+	turtle.forward()
 end
 
 
