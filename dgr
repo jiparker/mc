@@ -1,6 +1,13 @@
+local tArgs, gIterations = {...}, nil
+	
+	gIterations = tArgs[1]
 
-
-while not turtle.detectDown() do
-
-	turtle.placeDown()
+for i=1, gIterations, 1 do
+	while not turtle.detectDown() do
+  	turtle.placeDown()
+	end
 end
+
+
+
+
