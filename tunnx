@@ -32,6 +32,7 @@ end
 function Next2Rings()
 	turtle.turnRight()
 	turtle.forward()
+	turtle.forward()
 	turtle.turnLeft()
 	clearAhead(1,gheight)
 	turtle.turnRight()
