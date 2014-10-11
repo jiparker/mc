@@ -1,0 +1,124 @@
+local tArgs, gheight, gwidth, glength = {...}, nil, nil, nil, nil
+--hi - this is to dig 3x5 space for farm design
+--        S
+--        G
+--D D D D W
+
+
+--for each spot, dig 3 vertically
+function clear_vertical(height)
+	turtle.dig()
+	while not turtle.forward() do
+		turtle.dig()
+	end
+	turtle.digDown()
+
+	x = height - 2
+	for i=1, x, 1 do
+		turtle.down();
+		turtle.digDown();
+	end
+	turtle.up(x)
+end 
+
+function clearAhead(blocks, height)
+	width = blocks
+	for i = 1, width, 1 do	
+		clear_vertical(height)
+	end
+
+end
+
+function Next2Rings()
+	turtle.turnRight()
+	turtle.forward()
+	turtle.turnLeft()
+	clearAhead(1,gheight)
+	turtle.turnRight()
+	clearAhead(gwidth-1,gheight)
+
+  turtle.turnLeft()
+	clearAhead(1,gheight)
+  turtle.turnLeft()
+	clearAhead(gwidth-1,gheight)
+
+  --ready for next command
+	turtle.turnRight()
+end
+
+function savePostion()
+
+  --	x = 
+	--	y = 
+  -- facing = 
+
+end
+
+function saveHomePosition()
+
+
+end
+
+function getHomePosition()
+
+
+end
+
+function goHome(x, y, facing)
+	--based upon where we are - head back and look for home
+	-- handle at all restart situations
+
+--get us facing correct direction
+	turtle.turnRight(facing)
+
+	--homePos[] = getHomePosition()
+	--home_x
+	--home_y
+	--home_z
+
+	--offset_x = home_x - x
+	--offset_y = home_y - y
+	--offset_z = home_z - z
+
+	--try to get in far right position first x
+	--try to get to bottom for correct y 
+	--then, go back offset_z times
+end
+
+function getPosition()
+	--return [x,y,facing]
+end
+
+function onRestart()
+	--pos[] = getPostion()
+	--x = pos[0]
+	--y = pos[1]
+	--facing = pos[2] --- right turns from north 1, 2, or 3
+	--goHome(x, y, facing)
+end
+
+function testLoop(desc, value)
+ for i = 1, value, 1 do
+		print("value of " .. desc .. " ==>" .. i)
+ end
+
+end
+
+if tArgs[1] == "." then tArgs[1] = 1 end
+	gwidth = 5
+	gheight = 3
+	glength = tArgs[1]
+
+for i=1, glength, 1 do
+  --testLoop("glength: ", glength)
+	print("-- on " .. i .. " out of " .. glength .. "  ( " .. glength*2 .. " rows )")
+	Next2Rings(gwidth)
+end
+
+--go back
+for i=1,glength*2,1 do
+	--turtle.back()
+end
+
+
+
