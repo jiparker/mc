@@ -11,7 +11,7 @@ end
 iterations = args[1]
 print("Running striper NOW")
 
-	for i=1, counter, 1 do
+	for i=1, iterations, 1 do
   	turtle.forward(1)	
 		placeSmartly()	
 	end
