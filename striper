@@ -4,7 +4,7 @@ local selectedSlot = nil
 	
 
 function placeSmartly()
-			turtle.place()
+			turtle.placeDown()
 end
 
 
