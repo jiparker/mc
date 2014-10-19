@@ -1,0 +1,18 @@
+local args = { ... }
+local selectedSlot = nil
+
+	
+
+function placeSmartly()
+			turtle.place()
+end
+
+
+iterations = args[1]
+print("Running striper NOW")
+
+	for i=1, counter, 1 do
+  	turtle.forward(1)	
+		placeSmartly()	
+	end
+
