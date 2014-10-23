@@ -2,6 +2,7 @@ local args = { ... }
 local type = "rock"
 local selectedSlot = 1
 
+length = 30
 rows = args[1]
 print("Running NOW")
 
@@ -9,7 +10,7 @@ counter = 0
 
 for j = 1, rows, 1 do
 
-  while not turtle.detect() and counter < 30 do
+  while not turtle.detect() and counter < length do
 	  turtle.forward()
 	  counter=counter + 1
   end
