@@ -20,6 +20,8 @@ for j = 1, rows, 1 do
 	  turtle.place()
   end
 
+	counter = 0
+
 	turtle.turnLeft()
 	turtle.forward(1)
 	turtle.turnRight()
