@@ -14,7 +14,7 @@ for j = 1, rows, 1 do
 	  counter=counter + 1
   end
 
-  turtle.select(1)
+  turtle.select(row)
   for i=1, counter, 1 do
    	turtle.back(1)	
 	  turtle.place()
