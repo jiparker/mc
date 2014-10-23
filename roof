@@ -9,7 +9,7 @@ counter = 0
 
 for j = 1, rows, 1 do
 
-  while not turtle.detect() and counter < 64 do
+  while not turtle.detect() and counter < 30 do
 	  turtle.forward()
 	  counter=counter + 1
   end
