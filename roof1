@@ -1,0 +1,24 @@
+local args = { ... }
+local type = "rock"
+local selectedSlot = 1
+
+rows = args[1]
+print("Running NOW")
+
+counter = 0
+
+for j = 1, rows, 1 do
+
+while not turtle.detect() and counter < 64 do
+	turtle.forward()
+	counter=counter + 1
+end
+
+turtle.select(1)
+for i=1, counter, 1 do
+ 	turtle.back(1)	
+	placeSmartly()	
+end
+
+end
+
