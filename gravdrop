@@ -16,13 +16,13 @@ end
 gIterations = tArgs[1]
 
 currentSlot = 1
-while currentSlot != 17
 	turtle.selectSlot(currentSlot)
 	for i=1, gIterations, 1 do
-	  dropIt()
-	  turtle.forward()
+	  while currentSlot != 17 do	
+	   	dropIt()
+	    turtle.forward()
+		end
   end
-end
 
 
 
