@@ -19,7 +19,7 @@ gIterations = tArgs[1]
 currentSlot = 1
 	turtle.select(currentSlot)
 	for i=1, gIterations, 1 do
-	  while currentSlot < 17 do	
+	  if currentSlot < 17 then	
 	   	dropIt()
 	    turtle.forward()
 		end
