@@ -1,7 +1,7 @@
 local tArgs, gIterations = {...}, nil
 
 function placeDownSmartly()
-  if turtle.getItemCount(currentSlot) = 0 then
+  if turtle.getItemCount(currentSlot) == 0 then
 		currentSlot = currentSlot + 1
 	end
 	turtle.placeDown()
