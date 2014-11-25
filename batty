@@ -1,4 +1,4 @@
-local net = peripheral.wrap("back")
+local net = peripheral.wrap("left")
 
 local storageUnits = {
    {
