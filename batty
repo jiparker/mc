@@ -13,11 +13,10 @@ while true do
   for i=#storageUnits,1,-1 do
         storageUnit = storageUnits[i]
         if net.isPresentRemote(storageUnit["id"]) then
-          capacity = net.callRemote(storageUnit["id"], "getCapacity")
-          amount = net.callRemote(storageUnit["id"], "getStored")
+          capacity = net.callRemote(storageUnit["id"], "getEUCapacity")
+          amount = net.callRemote(storageUnit["id"], "getEUStored")
 					print("Capacity:  " .. capacity)
 					print("  Stored:  " .. amount)
-          storageUnit["bar"].setWidth(width / capacity * amount)
         end
   end
   sleep(0.5)
