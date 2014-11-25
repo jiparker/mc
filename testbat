@@ -1,0 +1,8 @@
+local bat = peripheral.wrap("left")
+
+capacity = bat.getEUCapacity()
+amount = bat.getEUStored()
+rate = bat.getEUOutputPerTick()
+print("Capacity:  " .. capacity)
+print("  Stored:  " .. amount)
+print(" EU/Tick:  " .. rate)
