@@ -1,0 +1,24 @@
+local net = peripheral.wrap("back")
+
+local storageUnits = {
+   {
+         ["id"] = "batbox_0",
+         ["name"] = "Main Batbox"
+   }
+}
+
+local offset = 0
+
+while true do
+  for i=#storageUnits,1,-1 do
+        storageUnit = storageUnits[i]
+        if net.isPresentRemote(storageUnit["id"]) then
+          capacity = net.callRemote(storageUnit["id"], "getCapacity")
+          amount = net.callRemote(storageUnit["id"], "getStored")
+					print("Capacity:  " .. capacity)
+					print("  Stored:  " .. amount)
+          storageUnit["bar"].setWidth(width / capacity * amount)
+        end
+  end
+  sleep(0.5)
+end
