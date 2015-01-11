@@ -1,0 +1,49 @@
+local tArgs, gheight, gwidth, glength = {...}, nil, nil, nil, nil
+-- removes top layer - 5 wide as long as glength
+
+--for each spot, dig 3 vertically
+function clear()
+	turtle.dig()
+	while not turtle.forward() do
+		turtle.dig()
+	end
+end 
+
+function clearAhead(blocks)
+	width = blocks
+	for i = 1, width, 1 do	
+		clear()
+	end
+
+end
+
+function Next2Rings()
+	clearAhead(1)
+	turtle.turnRight()
+	clearAhead(gwidth-1)
+
+  turtle.turnLeft()
+	clearAhead(1)
+  turtle.turnLeft()
+	clearAhead(gwidth-1)
+
+	turtle.turnRight()
+end
+
+if tArgs[1] == "." then tArgs[1] = 1 end
+	gwidth = 5
+	gheight = 1
+	glength = tArgs[1]
+
+for i=1, glength, 1 do
+	print("-- on " .. i .. " out of " .. glength .. "  ( " .. glength*2 .. " rows )")
+	Next2Rings(gwidth)
+end
+
+--go back
+for i=1,glength*2,1 do
+	turtle.back()
+end
+
+
+
