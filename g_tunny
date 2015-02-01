@@ -1,3 +1,5 @@
+-- script to bring a new version of a file --- need to apply this to fetch any individual file
+
 shell.run("rm tunny")
 shell.run("github jiparker mc . /tunny")
 shell.run("mv ../downloads/mc/tunny .")

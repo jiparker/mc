@@ -1,3 +1,4 @@
---from same dir as github, a dir of mc will be added with all github files
--- first pastebin get wPtGKMam github
+-- from same dir as github, a dir of mc will be added with all github files
+-- first pastebin get wPtGKMam github to download the github script
+-- then run "github {repoOwner} {repoName} {local path}"
 shell.run("github jiparker mc /")

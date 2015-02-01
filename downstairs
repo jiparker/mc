@@ -1,3 +1,4 @@
+-- send turtle down the stairs with arg
 local tArgs, gIterations = {...}, nil
 	
 	gIterations = tArgs[1]

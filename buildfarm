@@ -1,3 +1,5 @@
+-- lays dirt, torch, rock for strip farm:
+
 shell.run("strip1 torch")
 shell.run("sd")
 shell.run("sd")
