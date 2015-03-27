@@ -18,8 +18,9 @@ function clear_vertical(height)
 		turtle.down();
 		turtle.digDown();
 	end
-	print("going up: "..x)
-	turtle.up(x)
+	for i=1, x, 1 do
+		turtle.up();
+	end
 end 
 
 function clearAhead(blocks, height)
