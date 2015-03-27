@@ -18,6 +18,7 @@ function clear_vertical(height)
 		turtle.down();
 		turtle.digDown();
 	end
+	print("going up: "..x)
 	turtle.up(x)
 end 
 

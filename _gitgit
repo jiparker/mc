@@ -1,4 +1,8 @@
 -- from same dir as github, a dir of mc will be added with all github files
 -- first pastebin get wPtGKMam github to download the github script
 -- then run "github {repoOwner} {repoName} {local path}"
+--
+-- also, mv _gitgit and _startup to dir above mc without underscore
+--
 shell.run("github jiparker mc /")
+
