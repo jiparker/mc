@@ -1,0 +1,4 @@
+local reactor = peripheral.wrap("back")
+print(reactor.getEnergyStored())
+
+
