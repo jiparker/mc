@@ -9,6 +9,5 @@ function downloadFile( path, url, name )
   file.write(content.readAll())
   file.close()
 end
-fileList.files[path] = {"https://raw.github.com/"..gUser.."/"..gRepo.."/"..gBranch.."/"..fPath[i],fName[i]}
 local fileName = tArgs[1]
 downloadFile("/","https://raw.github.com/jiparker/mc/master/"..fileName, fileName)
