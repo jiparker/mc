@@ -9,8 +9,10 @@ end
 
 while true do 
   energy = reactor.getEnergyStored()
-
+	term.clear()
+	term.setCursorPos(1,1)
   monitor.write("Energy Stored: "..reactor.getEnergyStored())
+	term.setCursorPos(1,2)
   monitor.write("Reactor Status: "..reactorIsOn())
   sleep(5)  
 end
