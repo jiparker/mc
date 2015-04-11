@@ -1,5 +1,6 @@
 local reactor = peripheral.wrap("back")
 
+local cell = peripheral.wrap("bottom")
 local monitor = peripheral.wrap("top")
 
 function reactorIsOn()
@@ -11,8 +12,10 @@ while true do
   energy = reactor.getEnergyStored()
 	monitor.clear()
 	monitor.setCursorPos(1,1)
-  monitor.write("Energy Stored: "..reactor.getEnergyStored())
+  monitor.write("Reactor Energy Stored: "..reactor.getEnergyStored()/1000.."k")
 	monitor.setCursorPos(1,2)
+  monitor.write("Cell Energy Stored:  "..cell.getEnergyStored()/1000.."k")
+	monitor.setCursorPos(1,3)
   monitor.write("Reactor Status: "..reactorIsOn())
   sleep(5)  
 end
