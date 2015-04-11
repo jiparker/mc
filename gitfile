@@ -1,7 +1,6 @@
 local tArgs
 
 function downloadFile( path, url, name )
-  writeCenter("Downloading File: "..name)
   dirPath = path:gmatch('([%w%_%.% %-%+%,%;%:%*%#%=%/]+)/'..name..'$')()
   if dirPath ~= nil and not fs.isDir(dirPath) then fs.makeDir(dirPath) end
   local content = http.get(url)
