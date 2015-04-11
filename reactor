@@ -2,7 +2,18 @@ local reactor = peripheral.wrap("back")
 
 local monitor = peripheral.wrap("top")
 
+function reactorIsOn()
+  if (reactor.getActive()) then return "ON" end
+	return "OFF"
+end
 
-monitor.write("Energy Stored: "..reactor.getEnergyStored())
+while true do 
+  energy = reactor.getEnergyStored()
+
+  monitor.write("Energy Stored: "..reactor.getEnergyStored())
+  monitor.write("Reactor Status: "..reactorIsOn())
+  sleep(5)  
+end
+
 
 
