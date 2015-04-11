@@ -1,0 +1,14 @@
+local tArgs
+
+function downloadFile( path, url, name )
+  writeCenter("Downloading File: "..name)
+  dirPath = path:gmatch('([%w%_%.% %-%+%,%;%:%*%#%=%/]+)/'..name..'$')()
+  if dirPath ~= nil and not fs.isDir(dirPath) then fs.makeDir(dirPath) end
+  local content = http.get(url)
+  local file = fs.open(path,"w")
+  file.write(content.readAll())
+  file.close()
+end
+fileList.files[path] = {"https://raw.github.com/"..gUser.."/"..gRepo.."/"..gBranch.."/"..fPath[i],fName[i]}
+local fileName = tArgs[1]
+downloadFile("/","https://raw.github.com/jiparker/mc/master/"..fileName, fileName)
