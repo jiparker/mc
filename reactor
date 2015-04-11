@@ -1,4 +1,8 @@
 local reactor = peripheral.wrap("back")
-print(reactor.getEnergyStored())
+
+local monitor = peripheral.wrap("top")
+
+
+monitor.write("Energy Stored: "..reactor.getEnergyStored())
 
 
