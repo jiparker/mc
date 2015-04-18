@@ -1,6 +1,6 @@
 local reactor = peripheral.wrap("back")
 
-local cell = peripheral.wrap("bottom")
+local energyCell = peripheral.wrap("bottom")
 local monitor = peripheral.wrap("top")
 
 function reactorIsOn()
@@ -8,15 +8,39 @@ function reactorIsOn()
 	return "OFF"
 end
 
+function getPrettyE(rf)
+	newRF = math.floor(rf/100000+0.5)
+	return (newRF/10).."M"
+end
+
+function getFuelLevel()
+	fuel = math.floor(reactor.getFuelAmount()/80000*100)
+  if (fuel < 10) then return "*****-----LOW FUEL-----*****"
+	else return fuel.."%"
+	end
+end
+
+monitor.setTextScale(1)
+
 while true do 
-  energy = reactor.getEnergyStored()
+	
+	
+  rEnergy = reactor.getEnergyStored()
+	cEnergy = energyCell.getEnergyStored()
+
+	if (not reactor.getActive() and cEnergy < 500000) then reactor.setActive(true) end
+	if (reactor.getActive() and cEnergy > 79990000) then reactor.setActive(false) end
+
+
 	monitor.clear()
 	monitor.setCursorPos(1,1)
-  monitor.write("Reactor Energy Stored: "..reactor.getEnergyStored()/1000.."k")
+  monitor.write("Reactor Energy Stored: "..getPrettyE(rEnergy))
 	monitor.setCursorPos(1,2)
-  monitor.write("Cell Energy Stored:  "..cell.getEnergyStored()/1000.."k")
+  monitor.write("Cell Energy Stored: "..getPrettyE(cEnergy))
 	monitor.setCursorPos(1,3)
   monitor.write("Reactor Status: "..reactorIsOn())
+	monitor.setCursorPos(1,4)
+	monitor.write("Fuel Level: " ..getFuelLevel())
   sleep(5)  
 end
 
