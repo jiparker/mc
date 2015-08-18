@@ -14,4 +14,3 @@ print("got this:  " .. str)
 		else
     	print("can't play right now")
 		end
-end
