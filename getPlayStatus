@@ -1,14 +1,14 @@
 os.loadAPI("mc/json")
 
-str = http.get("https://gist.githubusercontent.com/anonymous/a9ca6f772ccec223174b/raw/c423d50cc11a70230032be1f5e178c17b7c0056b/test.json").readAll()
-
-print("got this:  " .. str)
+str = http.get("https://gist.github.com/jiparker/b90c5fc666d7d7e9b8e3/raw").readAll()
 
 		obj = json.decode(str)
 		play = obj.play
     
-		if play == true then
-			print("good to go")
+		if play == "true" then
+			print("Power ON!")
+			rs.setAnalogOutput("right",15)
 		else
-    	print("can't play right now")
+			print("Power OFF.....")
+			rs.setAnalogOutput("right",0)
 		end
