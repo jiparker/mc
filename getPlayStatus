@@ -1,4 +1,4 @@
-local json = os.loadAPI("json")
+os.loadAPI("mc/json")
 
 str = http.get("https://gist.githubusercontent.com/anonymous/a9ca6f772ccec223174b/raw/c423d50cc11a70230032be1f5e178c17b7c0056b/test.json").readAll()
 
@@ -7,8 +7,6 @@ print("got this:  " .. str)
 		obj = json.decode(str)
 		play = obj.play
     
-    sourceText.close()
-
 		if play == true then
 			print("good to go")
 		else
