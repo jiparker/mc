@@ -1,0 +1,20 @@
+http.request("https://gist.githubusercontent.com/anonymous/a9ca6f772ccec223174b/raw/c423d50cc11a70230032be1f5e178c17b7c0056b/test.json")
+
+local requesting = true
+
+while requesting do
+  local event, url, sourceText = os.pullEvent()
+  
+  if event == "http_success" then
+    local respondedText = sourceText.readAll()
+    
+    sourceText.close()
+    print(respondedText)
+    
+    requesting = false
+  elseif event == "http_failure" then
+    print("Server didn't respond.")
+    
+    requesting = false
+  end
+end

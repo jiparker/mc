@@ -1,9 +1,0 @@
-text = "Hi Ethan!!"
-mon = peripheral.wrap("right")
-mon.setTextScale(2)
-mon.setCursorPos(1,2)
-mon.write("Hello World!")
-while true
-do
-sleep(1)
-end

@@ -1,0 +1,30 @@
+local modem = peripheral.wrap("top")
+modem.open(3)--Open channel 3 so that we can listen on it
+
+function todoList()
+
+	mon = peripheral.wrap("left")
+
+	mon.setTextScale(2)
+	mon.clear()
+	mon.setCursorPos(1,2)
+	mon.write("running lister")
+	shell.run("lister")
+
+end
+
+
+while true do
+local event, modemSide, senderChannel, 
+  replyChannel, message, senderDistance = os.pullEvent("modem_message")
+
+	print("I just received a message from: "..senderChannel)
+	print("I should apparently reply on: "..replyChannel)
+	print("The modem receiving this is located on the "..modemSide.." side")
+	print("The message was: "..message)
+	print("The sender is: "..senderDistance.." blocks away from me.")
+
+	todoList()
+end
+
+
