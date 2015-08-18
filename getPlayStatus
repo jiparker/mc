@@ -7,9 +7,17 @@ while requesting do
   
   if event == "http_success" then
     local respondedText = sourceText.readAll()
+
+		obj = json.decode(respondedText)
+		play = obj.play
     
     sourceText.close()
-    print(respondedText)
+
+		if play == true then
+			print("good to go")
+		elseif
+    	print("can't play right now")
+		end
     
     requesting = false
   elseif event == "http_failure" then
