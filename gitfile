@@ -1,4 +1,4 @@
-local tArgs
+local tArgs = {...}
 
 function downloadFile( path, url, name )
   dirPath = path:gmatch('([%w%_%.% %-%+%,%;%:%*%#%=%/]+)/'..name..'$')()
