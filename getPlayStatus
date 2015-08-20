@@ -1,9 +1,9 @@
 os.loadAPI("mc/json")
 
-str = http.get("https://gist.github.com/jiparker/b90c5fc666d7d7e9b8e3/raw").readAll()
+str = http.get("https://limitless-hollows-7191.herokuapp.com/runners/1").readAll()
 
 		obj = json.decode(str)
-		play = obj.play
+		play = obj.active
     
 		if play == "true" then
 			print("Power ON!")
