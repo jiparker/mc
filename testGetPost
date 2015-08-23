@@ -1,4 +1,4 @@
-local _hostname = "http://limitless-hollows-7191"
+local _hostname = "http://limitless-hollows-7191.herokuapp.com"
 
 
 os.loadAPI("mc/json")
