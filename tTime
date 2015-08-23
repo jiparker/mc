@@ -20,8 +20,8 @@ end
 function GetPlayLogObject()
 
 	local playlog = {}
-	playlog.timeleft=1
-	playlog.gametime=os.clock()
+	playlog.timeLeft=60
+	playlog.gameTime=os.clock()
 	return playlog
 end
 
