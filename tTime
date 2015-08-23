@@ -1,4 +1,4 @@
-local _hostname, _timeLeftToPlay=0, _postFrequencySeconds = "https://limitless-hollows-7191.herokuapp.com", 0, 30 
+local _hostname, _timeLeftToPlay, _postFrequencySeconds = "https://limitless-hollows-7191.herokuapp.com", 0, 30 
 
 
 os.loadAPI("mc/json")
@@ -38,7 +38,9 @@ end
 
 function SecondsToPrettyTime(secs)
    hr = string.format("%02d",math.floor(secs/60/60))
+	 secs = secs - hr*60*60
    min = string.format("%02d",math.floor(secs/60))
+	 secs = secs - min*60
    sec = string.format("%02d",math.fmod(secs, 60))
 	 return hr .. ":" .. min .. ":" .. sec 
 end
@@ -59,9 +61,9 @@ function PlayGameLoop()
 	
 	timeToPlaySecs = _timeLeftToPlay*60
 	TurnPowerOn()
-	for i=timeToPlay, 0, -1 do
+	for i=timeToPlaySecs, 0, -1 do
     sleep(1) 
-		if math.fmod(i,_postFrequencySeconds) == 0
+		if math.fmod(i,_postFrequencySeconds) == 0 then
 			ret = SaveLog(i)
 		end
 	  print("time left:  " .. SecondsToPrettyTime(i))	
@@ -76,7 +78,7 @@ function main()
 		status = httpGetStatus()
 		_timeLeftToPlay = status.timeleft
 		
-		if status.status == true
+		if status.status == true then
 			PlayGameLoop()
 		else
 			TurnPowerOff()
