@@ -4,14 +4,14 @@ local _hostname = "http://limitless-hollows-7191"
 os.loadAPI("mc/json")
 
 function httpGetLastLog()
-  str = http.get(_hostname + "/playlog/last").readAll()
+  str = http.get(_hostname .. "/playlog/last").readAll()
   obj = json.decode(str)
   return obj
 end
 
 function httpPostLog(obj)
 	str = json.encode(obj) 
-	ret = http.post(_hostname + "/playlogs/",str)
+	ret = http.post(_hostname .. "/playlogs/",str)
   return ret
 end
 
