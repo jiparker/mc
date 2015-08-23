@@ -1,15 +1,18 @@
+local _hostname = "http://limitless-hollows-7191"
+
+
 os.loadAPI("mc/json")
 
 function httpGetLastLog()
-  str = http.get("http://localhost:3000/playlog/last").readAll()
+  str = http.get(_hostname + "/playlog/last").readAll()
   obj = json.decode(str)
   return obj
 end
 
 function httpPostLog(obj)
 	str = json.encode(obj) 
-	ret = http.post("http://localhost:3000/playlogs/",str)
-	textutils.tabulate(ret)
+	ret = http.post(_hostname + "/playlogs/",str)
+  return ret
 end
 
 function GetPlayLogObject()
@@ -22,12 +25,14 @@ end
 
 function main()
   log = GetPlayLogObject()
+	print("------------- table created local   ------------")
+	print(textutils.serialize(log))
 	ret = httpPostLog(log)
 	print("------------- return from http POST ------------")
 	print(textutils.serialize(ret))
 	status = httpGetLastLog()
 	print("------------- return from http GET ------------")
-	print(textutils.serialize(status)
+	print(textutils.serialize(status))
 
 
 end
