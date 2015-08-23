@@ -1,14 +1,72 @@
+local _timer_TimeLeft, _timer_Paused, _lastTime, _PowerIsOn
 os.loadAPI("mc/json")
 
-str = http.get("https://limitless-hollows-7191.herokuapp.com/runners/1").readAll()
+function statusOn()
+	str = http.get("https://limitless-hollows-7191.herokuapp.com/runners/1").readAll()
 
-		obj = json.decode(str)
-		play = obj.active
-    
-		if play == "true" then
-			print("Power ON!")
-			rs.setAnalogOutput("right",15)
-		else
-			print("Power OFF.....")
-			rs.setAnalogOutput("right",0)
-		end
+	obj = json.decode(str)
+	play = obj.active
+   
+	if play == "true" then
+		print("status ON!")
+	else
+		print("status OFF")
+	end
+end
+
+function turnPowerOn()
+	rs.setAnalogOutput("right",15)
+	_PowerIsOn = true
+end
+
+function turnPowerOff()
+	rs.setAnalogOutput("right",0)
+	_PowerIsOn = false
+end
+
+function startTimer(hours)
+	_timer_TimeLeft = hours
+end
+
+function updateTimer()
+	local currentTime = os.Time()
+	if _timerPaused == false
+		_timer_TimeLeft = _timer_TimeLeft - (currentTime - _lastTime)	
+	end
+end
+
+function pauseTimer()
+	_timerPaused = true
+end
+
+function unpauseTimer()
+	_timerPaused = false
+end
+
+function persistTimeLeft()
+ 	savetofilesystem = _timer_TimeLeft 
+end
+
+function loadTimeLeft()
+	_timer_TimeLeft = somethingfromfilesystem
+end
+
+function main()
+	loadTimeLeft()
+
+	if _timer_TimeLeft > 0 
+		turnPowerOn() 
+	else
+	  turnPowerOff()
+	end
+
+	while true do
+			
+
+	end
+end
+
+main()
+
+
+

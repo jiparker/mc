@@ -1,0 +1,38 @@
+os.loadAPI("mc/json")
+
+function httpGetLastLog()
+  str = http.get("http://localhost:3000/playlog/last").readAll()
+  obj = json.decode(str)
+  return obj
+end
+
+function httpPostLog(obj)
+	str = json.encode(obj) 
+	ret = http.post("http://localhost:3000/playlogs/",str)
+	textutils.tabulate(ret)
+end
+
+function GetPlayLogObject()
+
+	local playlog = {}
+	playlog.timeleft=100
+	playlog.gametime=os.clock()
+	return playlog
+end
+
+function main()
+  log = GetPlayLogObject()
+	ret = httpPostLog(log)
+	print("------------- return from http POST ------------")
+	print(textutils.serialize(ret))
+	status = httpGetLastLog()
+	print("------------- return from http GET ------------")
+	print(textutils.serialize(status)
+
+
+end
+
+main()
+
+
+
