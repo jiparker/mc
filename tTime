@@ -36,7 +36,7 @@ function main()
 	ret = httpPostLog(log)
 	status = httpGetLastLog()
 
-	timeToPlay = status.timeLeft
+	timeToPlay = tonumber(status.timeLeft)
 	timeLeft = timeToPlay
 
 for i=timeToPlay, 0 do
