@@ -2,5 +2,5 @@ local tArgs = {...}
 
 path = "/" .. tArgs[1]
 
-shell.run("github jiparker mc " .. path)
+shell.run("github jiparker mc / " .. path)
 
