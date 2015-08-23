@@ -24,9 +24,9 @@ function httpPostLog(obj)
 end
 
 function SaveLog(secs)
-	Write("Posting")
+	Write("Posting: ".. secs/60 .. " minutes left")
 	log = GetPlayLogObject(math.floor(secs/60))
-	return httpPostLog(obj)
+	return httpPostLog(log)
 end
 
 function GetPlayLogObject(mins)
