@@ -39,7 +39,7 @@ function main()
 	timeToPlay = tonumber(status.timeleft)
 	timeLeft = timeToPlay
 
-for i=timeToPlay, 0 do
+for i=timeToPlay, 0, -1 do
     --term.clear() --clears the screen
     --term.setCursorPos(1, 1) --sets the cursor to 1,1
     sleep(1) 
