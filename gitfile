@@ -1,7 +1,6 @@
 local tArgs = {...}
 
-path = tArgs[1]
+path = "/" .. tArgs[1]
 
-print(path)
---shell.run("github jiparker mc /")
+shell.run("github jiparker mc " .. path)
 
