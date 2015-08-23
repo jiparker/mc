@@ -1,10 +1,16 @@
-local _hostname = "https://limitless-hollows-7191.herokuapp.com"
+local _hostname, _timeLeftToPlay=0, _postFrequencySeconds = "https://limitless-hollows-7191.herokuapp.com", 0, 30 
 
 
 os.loadAPI("mc/json")
 
 function httpGetLastLog()
   str = http.get(_hostname .. "/playlogs/last").readAll()
+  obj = json.decode(str)
+  return obj
+end
+
+function httpGetStatus()
+  str = http.get(_hostname .. "/status").readAll()
   obj = json.decode(str)
   return obj
 end
@@ -17,35 +23,71 @@ function httpPostLog(obj)
   return ret
 end
 
-function GetPlayLogObject()
+function SaveLog(secs)
+	Write("Posting")
+	log = GetPlayLogObject(math.floor(secs/60))
+	return httpPostLog(obj)
+end
 
+function GetPlayLogObject(mins)
 	local playlog = {}
-	playlog.timeleft=60
-	playlog.gametime=os.clock()
+	playlog.timeleft=mins
+	playlog.gametime=0
 	return playlog
 end
 
 function SecondsToPrettyTime(secs)
+   hr = string.format("%02d",math.floor(secs/60/60))
    min = string.format("%02d",math.floor(secs/60))
    sec = string.format("%02d",math.fmod(secs, 60))
-	 return min .. ":" .. sec 
+	 return hr .. ":" .. min .. ":" .. sec 
+end
+
+function Write(msg)
+	print(msg)
+end
+
+function TurnPowerOff()
+			Write("System Off")
+end
+
+function TurnPowerOn()
+			Write("System On")
+end
+
+function PlayGameLoop()
+	
+	timeToPlaySecs = _timeLeftToPlay*60
+	TurnPowerOn()
+	for i=timeToPlay, 0, -1 do
+    sleep(1) 
+		if math.fmod(i,_postFrequencySeconds) == 0
+			ret = SaveLog(i)
+		end
+	  print("time left:  " .. SecondsToPrettyTime(i))	
+	end
+	ret = SaveLog(0)	
 end
 
 function main()
-  log = GetPlayLogObject()
-	ret = httpPostLog(log)
-	status = httpGetLastLog()
 
-	timeToPlay = tonumber(status.timeleft)
-	timeLeft = timeToPlay
+	while true do
+		
+		status = httpGetStatus()
+		_timeLeftToPlay = status.timeleft
+		
+		if status.status == true
+			PlayGameLoop()
+		else
+			TurnPowerOff()
+	  	SecondsToPrettyTime(0)	
+			os.sleep(300)
+		end
+	end
 
-for i=timeToPlay, 0, -1 do
-    --term.clear() --clears the screen
-    --term.setCursorPos(1, 1) --sets the cursor to 1,1
-    sleep(1) 
-	  print("time left:  " .. SecondsToPretty(i))	
-end
 
+
+	--ret = httpPostLog(log)
 end
 
 main()
