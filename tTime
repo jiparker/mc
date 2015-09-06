@@ -9,7 +9,7 @@ function httpGetLastLog()
   return obj
 end
 
-function httpGetStatus()
+function httpGetStartStatus()
   str = http.get(_hostname .. "/status").readAll()
   obj = json.decode(str)
   return obj
@@ -92,6 +92,14 @@ function Write(msg)
 	print(msg)
 end
 
+function AdjustPower(on)
+		if _timeLeftToPlay < 1 then
+			TurnPowerOff()
+		else
+			TurnPowerOn()
+		end
+end
+
 function TurnPowerOff()
 			Write("System Off")
 end
@@ -103,36 +111,30 @@ end
 function PlayGameLoop()
 	
 	timeToPlaySecs = _timeLeftToPlay*60
-	TurnPowerOn()
 	for i=timeToPlaySecs, 0, -1 do
     sleep(1) 
 		if math.fmod(i,_postFrequencySeconds) == 0 then
-			ret = SaveLog(i)
+			status = SaveLog(i)
+			if status.timeleft*60 > i then
+				_timeLeftToPlay = status.timeleft
+				status = SaveLog(_timeLeftToPlay)
+				break
+			end
 		end
 	  WriteCountDown(SecondsToPrettyTime(i))	
+		--AdjustPower()
 	end
 	ret = SaveLog(0)	
 end
 
 function main()
+		
+	status = httpGetStartStatus()
+	_timeLeftToPlay = status.timeleft
 
 	while true do
-		
-		status = httpGetStatus()
-		_timeLeftToPlay = status.timeleft
-		
-		if status.status == true then
-			PlayGameLoop()
-		else
-			TurnPowerOff()
-	  	SecondsToPrettyTime(0)	
-			os.sleep(300)
-		end
+		PlayGameLoop()
 	end
-
-
-
-	--ret = httpPostLog(log)
 end
 
 main()
