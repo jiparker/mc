@@ -125,6 +125,7 @@ function PlayGameLoop()
 	  WriteCountDown(SecondsToPrettyTime(i))	
 		--AdjustPower()
 	end
+	_timeLeftToPlay = 0
 	ret = SaveLog(0)	
 end
 
@@ -135,6 +136,7 @@ function main()
 
 	while true do
 		PlayGameLoop()
+		sleep(120)
 	end
 end
 
