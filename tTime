@@ -20,7 +20,8 @@ function httpPostLog(obj)
 	headers = {}
 	headers["Content-Type"] = "application/json"
 	ret = http.post(_hostname .. "/playlogs",str, headers).readAll()
-  return ret
+  obj = json.decode(ret)
+  return obj
 end
 
 function WriteCountDown(strTime)
