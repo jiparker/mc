@@ -50,8 +50,8 @@ function WriteList(listName)
 	mon.clear()
  	n=1
  	while n < 10 do
- 		mon.setCursorPos(1,n)
-   	mon.write((n-2) .. "- asdfasdfasdfasdfasdf")
+ 		mon.setCursorPos(1,n+2)
+   	mon.write(n .. " - asdfasdfasdfasdfasdf")
  	  n=n+1
   end
 
