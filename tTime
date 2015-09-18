@@ -3,6 +3,10 @@ local _hostname, _timeLeftToPlay, _postFrequencySeconds, mon = "https://limitles
 
 os.loadAPI("mc/json")
 
+--************************************************
+--* HTTP STUFF                                   *
+--************************************************
+
 function httpGetList(listName)
   str = http.get(_hostname .. "/lists/" .. listName).readAll()
   obj = json.decode(str)
@@ -30,24 +34,27 @@ function httpPostLog(obj)
   return obj
 end
 
-function WriteCountDown(strTime)
-	mon = peripheral.wrap("left")
-	mon.setTextScale(2)
-  mon.clear()
-  mon.setCursorPos(1,1)
-	mon.write(strTime)
+--************************************************
+--* WRITING HELPERS                              *
+--************************************************
+
+function WriteGameTime()
+
   local time = os.time()
   local formattedTime = textutils.formatTime(time, false)
-  mon.setCursorPos(1,2)
-	mon.write(formattedTime)
+  
+	mon.setCursorPos(1,14)
+	mon.write("-----------------------------------")
+	mon.setCursorPos(1,16)
+	mon.write("   GameTime:  "..formattedTime)
+end
 
+function WriteTimeLeft(leftSeconds)
+	mon.setCursorPos(20,16)
+	mon.write("TimeLeft:  "..SecondsToPrettyTime(leftSeconds)
 end
 
 function WriteList(listName)
-
-  local time = os.time()
-  local formattedTime = textutils.formatTime(time, false)
-
 	mon.clear()
  	mon.setCursorPos(1,1)
 	mon.write("          " .. listName .. " list")
@@ -63,15 +70,16 @@ function WriteList(listName)
  	  n=n+1
   end
 
-	mon.setCursorPos(1,14)
-	mon.write("-----------------------------------")
-	mon.setCursorPos(1,16)
-	mon.write("   GameTime:  "..formattedTime)
-	os.sleep(15)
+	WriteGameTime()
+	WriteLeftTime(9999)
 end
 
+--************************************************
+--* PLAYLOG SAVING                               *
+--************************************************
+
 function SaveLog(secs)
-	Write("Posting: ".. secs/60 .. " minutes left")
+	print("Posting: ".. secs/60 .. " minutes left")
 	log = GetPlayLogObject(math.floor(secs/60))
 	return httpPostLog(log)
 end
@@ -83,6 +91,10 @@ function GetPlayLogObject(mins)
 	return playlog
 end
 
+--************************************************
+--* TIME HELPERS                                 *
+--************************************************
+
 function SecondsToPrettyTime(secs)
    hr = string.format("%02d",math.floor(secs/60/60))
 	 secs = secs - hr*60*60
@@ -92,25 +104,9 @@ function SecondsToPrettyTime(secs)
 	 return hr .. ":" .. min .. ":" .. sec 
 end
 
-function Write(msg)
-	print(msg)
-end
-
-function AdjustPower(on)
-		if _timeLeftToPlay < 1 then
-			TurnPowerOff()
-		else
-			TurnPowerOn()
-		end
-end
-
-function TurnPowerOff()
-			Write("System Off")
-end
-
-function TurnPowerOn()
-			Write("System On")
-end
+--************************************************
+--*      MAIN PROCESSING                         *
+--************************************************
 
 function PlayGameLoop()
 	
