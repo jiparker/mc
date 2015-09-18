@@ -62,8 +62,6 @@ function WriteList(listName)
 	mon.write("-----------------------------------")
   list = httpGetList(listName)
 
-print("+++++++++++++  " .. list[1]["name"])
-
  	n=1
  	while n < 11 do
  		mon.setCursorPos(1,n+2)
