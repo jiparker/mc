@@ -43,13 +43,6 @@ function WriteCountDown(strTime)
 
 end
 
-local function getValue(s)
-	if s == nil then
-		return ""
-	end
-	return s
-end
-
 function WriteList(listName)
 
   local time = os.time()
@@ -65,7 +58,8 @@ function WriteList(listName)
  	n=1
  	while n < 11 do
  		mon.setCursorPos(1,n+2)
-   	mon.write(n .. " - " .. getValue(list[n]["name"]))
+		if list[n] == nil then break end
+   	mon.write(n .. " - " .. list[n]["name"])
  	  n=n+1
   end
 
