@@ -42,16 +42,14 @@ function WriteList(listName)
   local time = os.time()
   local formattedTime = textutils.formatTime(time, false)
 
-	while true do
   	mon.clear()
   	mon.setCursorPos(1,3)
   	n=1
   	while n < 9 do
-  		mon.setCursorPos(1,n)
     	mon.write(n .. "- asdfasdfasdfasdfasdf")
+  		mon.setCursorPos(1,n)
  		  n=n+1
 	  end
- 	end
 
 	mon.setCursorPos(1,9)
 	mon.write("--------------------------------------------------")
