@@ -42,17 +42,17 @@ function WriteList(listName)
   local time = os.time()
   local formattedTime = textutils.formatTime(time, false)
 
-while true do
-  mon.clear()
-  mon.setCursorPos(1,3)
-  n=1
+	while true do
+  	mon.clear()
+  	mon.setCursorPos(1,3)
+  	n=1
   	while line and n < 9 do
   		mon.setCursorPos(1,n)
     	mon.write(n .. "- asdfasdfasdfasdfasdf")
       line = h.readLine()
  		  n=n+1
 	  end
- end
+ 	end
 
 	mon.setCursorPos(1,9)
 	mon.write("--------------------------------------------------")
@@ -60,7 +60,7 @@ while true do
 	mon.write("   GameTime:  "..formattedTime)
 	os.sleep(15)
 end
-end
+
 function SaveLog(secs)
 	Write("Posting: ".. secs/60 .. " minutes left")
 	log = GetPlayLogObject(math.floor(secs/60))
