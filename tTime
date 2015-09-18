@@ -54,7 +54,7 @@ function WriteList(listName)
  	mon.setCursorPos(1,2)
 	mon.write("-----------------------------------")
   list = httpGetList(listName)
-
+  for key,value in pairs(list) do print(key,value) end
  	n=1
  	while n < 11 do
  		mon.setCursorPos(1,n+2)
