@@ -55,9 +55,9 @@ function WriteList(listName)
  	  n=n+1
   end
 
-	mon.setCursorPos(1,9)
+	mon.setCursorPos(1,14)
 	mon.write("-----------------------------------")
-	mon.setCursorPos(1,11)
+	mon.setCursorPos(1,16)
 	mon.write("   GameTime:  "..formattedTime)
 	os.sleep(15)
 end
