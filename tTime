@@ -42,17 +42,21 @@ function WriteList(listName)
   local time = os.time()
   local formattedTime = textutils.formatTime(time, false)
 
-  	mon.clear()
-  	mon.setCursorPos(1,3)
-  	n=1
-  	while n < 9 do
-    	mon.write(n .. "- asdfasdfasdfasdfasdf")
-  		mon.setCursorPos(1,n)
- 		  n=n+1
-	  end
+ 	mon.setCursorPos(1,1)
+	mon.write("          " .. listName .. " list")
+ 	mon.setCursorPos(1,2)
+	mon.write("-----------------------------------")
+  
+	mon.clear()
+ 	n=1
+ 	while n < 10 do
+ 		mon.setCursorPos(1,n)
+   	mon.write((n-2) .. "- asdfasdfasdfasdfasdf")
+ 	  n=n+1
+  end
 
 	mon.setCursorPos(1,9)
-	mon.write("--------------------------------------------------")
+	mon.write("-----------------------------------")
 	mon.setCursorPos(1,11)
 	mon.write("   GameTime:  "..formattedTime)
 	os.sleep(15)
