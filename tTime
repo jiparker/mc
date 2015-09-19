@@ -86,7 +86,7 @@ end
 --************************************************
 
 function SaveLog(secs)
-	SaveLogMins(secs/60)
+	return SaveLogMins(secs/60)
 end
 
 function SaveLogMins(mins)
