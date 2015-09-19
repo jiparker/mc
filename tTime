@@ -1,4 +1,4 @@
-local _hostname, _timeLeftToPlay, _postFrequencySeconds, mon = "https://limitless-hollows-7191.herokuapp.com", 0, 300, null
+local _hostname, _timeLeftToPlay, _postFrequencySeconds, mon = "https://limitless-hollows-7191.herokuapp.com", 0, 120, null
 
 
 os.loadAPI("mc/json")
@@ -38,6 +38,11 @@ end
 --* WRITING HELPERS                              *
 --************************************************
 
+function SetUpMonitor()
+  mon = peripheral.wrap("left")
+	mon.setTextScale(2)
+end
+
 function WriteGameTime()
 
   local time = os.time()
@@ -49,7 +54,12 @@ function WriteGameTime()
 	mon.write("   GameTime:  "..formattedTime)
 end
 
+function WriteTimeLeftMins(mins)
+	WriteTimeLeft(mins*60)
+end
+
 function WriteTimeLeft(leftSeconds)
+	WriteGameTime()
 	mon.setCursorPos(20,16)
 	mon.write("TimeLeft:  "..SecondsToPrettyTime(leftSeconds)
 end
@@ -79,8 +89,12 @@ end
 --************************************************
 
 function SaveLog(secs)
-	print("Posting: ".. secs/60 .. " minutes left")
-	log = GetPlayLogObject(math.floor(secs/60))
+	SaveLogMins(secs*60)
+end
+
+function SaveLogMins(mins)
+	print("Posting: ".. mins .. " minutes left")
+	log = GetPlayLogObject(math.floor(mins))
 	return httpPostLog(log)
 end
 
@@ -104,43 +118,50 @@ function SecondsToPrettyTime(secs)
 	 return hr .. ":" .. min .. ":" .. sec 
 end
 
+function SleepMins(mins)
+	sleep(mins*60)
+end
+
 --************************************************
 --*      MAIN PROCESSING                         *
 --************************************************
 
 function PlayGameLoop()
-	
+  print("starting PlayGameLoop")	
 	timeToPlaySecs = _timeLeftToPlay*60
 	for i=timeToPlaySecs, 0, -1 do
     sleep(1) 
 		if math.fmod(i,_postFrequencySeconds) == 0 then
-			status = SaveLog(i)
+			status = SaveLogMins(i)
 			if status.timeleft*60 > i then
+				print("Adjusting timeleft from " .. i/60 .. " to " . status.timeleft)
 				_timeLeftToPlay = status.timeleft
-				status = SaveLog(_timeLeftToPlay)
-				break
+				status = SaveLogMins(_timeLeftToPlay)
+	  		WriteTimeLeftMins(_timeLeftToPlay)	
+				return
 			end
 		end
-	  WriteCountDown(WriteToDisplay(i))	
-		--AdjustPower()
+	  WriteTimeLeft(i)
+		WriteGameTime()
 	end
 	_timeLeftToPlay = 0
 	ret = SaveLog(0)	
 end
 
+
 function main()
-		
-  mon = peripheral.wrap("left")
-		mon.setTextScale(2)
-	--status = httpGetStartStatus()
-	--_timeLeftToPlay = status.timeleft
+	
+	SetUpMonitor()
+	
+	WriteTimeLeftMins(_timeLeftToPlay)
+	WriteList("mc")
 
 	while true do
-		--GetToDoList()
-		--PlayGameLoop()
-		WriteList("mc")
-		sleep(120)
-
+	  status = httpGetStartStatus()
+		_timeLeftToPlay = status.timeleft
+	
+		PlayGameLoop()
+		SleepMins(2)
 	end
 end
 
