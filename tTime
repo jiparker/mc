@@ -79,9 +79,6 @@ function WriteList(listName)
    	mon.write(n .. " - " .. list[n]["name"])
  	  n=n+1
   end
-
-	WriteGameTime()
-	WriteLeftTime(9999)
 end
 
 --************************************************
