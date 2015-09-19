@@ -61,7 +61,7 @@ end
 function WriteTimeLeft(leftSeconds)
 	WriteGameTime()
 	mon.setCursorPos(20,16)
-	mon.write("TimeLeft:  "..SecondsToPrettyTime(leftSeconds))
+	mon.write("TimeLeft:  ".. SecondsToPrettyTime(leftSeconds))
 end
 
 function WriteList(listName)
@@ -122,6 +122,8 @@ function SleepMins(mins)
 	sleep(mins*60)
 end
 
+
+
 --************************************************
 --*      MAIN PROCESSING                         *
 --************************************************
@@ -147,7 +149,6 @@ function PlayGameLoop()
 	_timeLeftToPlay = 0
 	ret = SaveLog(0)	
 end
-
 
 function main()
 	
