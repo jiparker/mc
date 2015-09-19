@@ -51,7 +51,7 @@ function WriteGameTime()
 	mon.setCursorPos(1,14)
 	mon.write("-----------------------------------")
 	mon.setCursorPos(1,16)
-	mon.write("Game: "..formattedTime)
+	mon.write(" Game: "..formattedTime .. "  ")
 end
 
 function WriteTimeLeftMins(mins)
@@ -60,7 +60,7 @@ end
 
 function WriteTimeLeft(leftSeconds)
 	WriteGameTime()
-	mon.setCursorPos(19,16)
+	mon.setCursorPos(21,16)
 	mon.write("Left: ".. SecondsToPrettyTime(leftSeconds))
 end
 
