@@ -134,7 +134,7 @@ function PlayGameLoop()
 		if math.fmod(i,_postFrequencySeconds) == 0 then
 			status = SaveLogMins(i)
 			if status.timeleft*60 > i then
-				print("Adjusting timeleft from " .. i/60 .. " to " . status.timeleft)
+				print("Adjusting timeleft from " .. i/60 .. " to " .. status.timeleft)
 				_timeLeftToPlay = status.timeleft
 				status = SaveLogMins(_timeLeftToPlay)
 	  		WriteTimeLeftMins(_timeLeftToPlay)	
