@@ -134,6 +134,7 @@ function PlayGameLoop()
 	for i=timeToPlaySecs, 0, -1 do
     sleep(1) 
 		if math.fmod(i,_postFrequencySeconds) == 0 then
+			print("This is line 137")
 			status = SaveLogMins(i)
 			if status.timeleft*60 > i then
 				print("Adjusting timeleft from " .. i/60 .. " to " .. status.timeleft)
