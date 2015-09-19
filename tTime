@@ -51,7 +51,7 @@ function WriteGameTime()
 	mon.setCursorPos(1,14)
 	mon.write("-----------------------------------")
 	mon.setCursorPos(1,16)
-	mon.write("   GameTime:  "..formattedTime)
+	mon.write("Game: "..formattedTime)
 end
 
 function WriteTimeLeftMins(mins)
@@ -60,8 +60,8 @@ end
 
 function WriteTimeLeft(leftSeconds)
 	WriteGameTime()
-	mon.setCursorPos(20,16)
-	mon.write("TimeLeft:  ".. SecondsToPrettyTime(leftSeconds))
+	mon.setCursorPos(19,16)
+	mon.write("Left: ".. SecondsToPrettyTime(leftSeconds))
 end
 
 function WriteList(listName)
@@ -131,8 +131,7 @@ function PlayGameLoop()
 	for i=timeToPlaySecs, 0, -1 do
     sleep(1) 
 		if math.fmod(i,_postFrequencySeconds) == 0 then
-			print("This is line 137")
-			status = SaveLogMins(i)
+			status = SaveLog(i)
 			if status.timeleft*60 > i then
 				print("Adjusting timeleft from " .. i/60 .. " to " .. status.timeleft)
 				_timeLeftToPlay = status.timeleft
