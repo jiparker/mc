@@ -61,7 +61,7 @@ end
 function WriteTimeLeft(leftSeconds)
 	WriteGameTime()
 	mon.setCursorPos(20,16)
-	mon.write("TimeLeft:  "..SecondsToPrettyTime(leftSeconds)
+	mon.write("TimeLeft:  "..SecondsToPrettyTime(leftSeconds))
 end
 
 function WriteList(listName)
