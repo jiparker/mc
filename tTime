@@ -1,4 +1,4 @@
-local _hostname, _timeLeftToPlay, _postFrequencySeconds, mon = "https://limitless-hollows-7191.herokuapp.com", 0, 120, null
+local _hostname, _timeLeftToPlay, _postFrequencySeconds, mon = "https://localhost", 0, 120, null
 
 
 os.loadAPI("mc/json")
